@@ -1,0 +1,17 @@
+{
+  "name": "altai_sortable",
+  "title": "Altai Sortable",
+  "version": "1.0.5",
+  "description": "Reorder elements in a list or grid.",
+  "main": "dist/altai_sortable.js",
+  "dependencies": {
+    "jquery": "^3.0",
+    "jquery-ui": "^1.0"
+  },
+  "repository": {
+    "url": "https://github.com/iigethr/altai_sortable",
+    "type": "git"
+  },
+  "author": "Team IIGETHR <wearesocial@iigethr.com>",
+  "license": "MIT"
+}

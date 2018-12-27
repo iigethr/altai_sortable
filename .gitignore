@@ -1,0 +1,15 @@
+## Ignore all logfiles and tempfiles.
+*.log
+/log/
+/tmp/
+!/log/.keep
+!/tmp/.keep
+
+# Ignore
+NOTES.md
+node_modules
+package-lock.json
+
+# Debris
+.DS_Store
+.sass-cache
