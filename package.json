@@ -1,7 +1,7 @@
 {
   "name": "altai_sortable",
   "title": "Altai Sortable",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Reorder elements in a list or grid.",
   "main": "dist/altai_sortable.js",
   "dependencies": {

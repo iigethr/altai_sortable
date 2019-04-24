@@ -5,65 +5,58 @@
 *
 */
 
-// jQuery
-var jQuery;
+// jQuery & Rails
+import $ from "jquery"
+import jQuery from "jquery"
+import Rails from "@rails/ujs"
 
-// Rails
-var Rails;
+(($, window, document) => $.fn.extend({
+  altaiSortable(options) {
 
-(function($, window, document) {
-  $.fn.extend({
-    altaiSortable: function(options) {
-      // Variables
-      var action, log, settings;
-      var object = $(this);
+    // Lets & Constants
+    let action
+    let log
+    let settings
+    const object = $(this)
 
-      // Default settings
-      settings = {
-        debug: true
-      };
-      settings = $.extend(settings, options);
+    // Settings
+    settings = {
+      debug: true
+    }
+    settings = $.extend(settings, options)
 
-      // Log
-      log = function(message) {
-        if (settings.debug) {
-          if (typeof ((console === "undefined") && (console === null))) {
-            return console.log(message);
-          } else {
-            return undefined;
-          }
-        } else {
-          return undefined;
-        }
-      };
-
-      // Action
-      action = function() {
-        object.each(function() {
-          $(this).sortable({
-            // axis: "y",
-            containment: "body",
-            cursor: "move",
-            option: "grid",
-            handle: ".handle",
-            update: function(e, ui) {
-              Rails.ajax({
-                url: $(this).data("url"),
-                type: "PATCH",
-                data: $(this).sortable("serialize")
-              });
-            }
-          });
-        });
-      };
-
-      // If object found run actions
-      if (object.length > 0) {
-        return this.each(function() {
-          action();
-          log("Altai Sortable Activated");
-        });
+    // Log
+    log = message => {
+      if (settings.debug) {
+        return console.log(message)
+      } else {
+        return undefined
       }
     }
-  });
-})(jQuery, window, document);
+
+    // Action
+    action = () => {
+      object.each( () => {
+        $(this).sortable({
+          containment: "body",
+          cursor: "move",
+          option: "grid",
+          handle: ".handle",
+          update(event, ui) {
+            Rails.ajax({
+              url: $(this).data("url"),
+              type: "PATCH",
+              data: $(this).sortable("serialize")
+            })
+          }
+        })
+        log("Altai Sortable Activated")
+      })
+    }
+
+    // If object found run actions
+    if (object.length > 0) {
+      action()
+    }
+  }
+}))(jQuery, window, document)
